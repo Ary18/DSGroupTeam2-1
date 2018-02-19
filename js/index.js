@@ -1,11 +1,11 @@
-inizializzaPagina();
-
-function inizializzaPagina() {
+function initializePage() {
 	if( 'geolocation' in navigator) {
 		navigator.geolocation.getCurrentPosition (function(pos) {
-			var userInfo = readFromStorage();
-			var weatherObj = generateWeatherObj();
+				var userInfo = readFromStorage();
+				var weatherObj = generateWeatherObj();
 
+				console.log(userInfo);
+				console.log(weatherObj);
 			},
 			function(error) {
 				alert(error.message);
@@ -13,9 +13,6 @@ function inizializzaPagina() {
 	} else {
 		console.log('No navigator initiated');
 	}
-
-	console.log( readFromStorage() );
-	console.log( generateweatherObj() );
 }
 
 function readFromStorage() {
@@ -31,7 +28,7 @@ function readFromStorage() {
 	return userInfo;
 }
 
-function generateweatherObj() {
+function generateWeatherObj() {
 	var weatherObj = {};
 
 	weatherObj.coord = {};
