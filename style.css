@@ -4,20 +4,60 @@ body{
 
 header{
     background-color: #aabb97;
+    padding: 5px;
 }
 
-h1{
+header heading h1{
    font-family: sans-serif;
+   margin-bottom: 2px;
 }
 
-h3{
+header heading h3{
    font-family: sans-serif;
+   font-style: oblique;
+   margin-top: 2px;
 }
 
 main{
     background-color: #fffffb;
 }
 
+#weather-summary{
+    float: right;
+    overflow: auto;
+
+}
+
+#weather-img{
+    float: left;
+    width: 200px;
+    height: 150px;
+}
+
+#temp {
+    float: right;
+}
+
+section heading h1{
+    font-family: monospace;
+}
+
+mappa{
+    width: 70%;
+    height: 300px;
+} 
+
+table {
+    padding: 10px;
+    background-color: #fffffb;
+    width: 70%;
+    height: 200px;
+    margin: auto;
+    display: block;
+
+}
+
 footer{
     background-color: #aabb97;
+    padding: 5px;
 }
