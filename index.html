@@ -11,16 +11,20 @@
     <header>
         <heading>
             <h1>Benvenuto <span id="nome-utente"></span></h1>
-            <h2>Ultimo accesso: <span id="ultimo-accesso"></span><h2>
+            <h3>Ultimo accesso: <span id="ultimo-accesso"></span><h3>
         </heading>
     </header>
     <main>
         <section>
-            <heading>
-                <h1>Previsioni metereologiche per <span id="posizione">POSIZIONE (JS)</span></h1>
-            </heading>
-            <span id="weather-img">IMMAGINE (JS)</span>
-            <span id="weather-temp">TEMPERATURA (JS)</span>
+            <div id="weather-summary">
+                <heading>
+                    <h1>Previsioni metereologiche per <span id="posizione">POSIZIONE (JS)</span></h1>
+                </heading>
+                <figure id="container-img">
+                    <img id="weather-img" src="http://openweathermap.org/img/w/01d.png">
+                </figure>
+                <span id="temp">TEMPERATURA (JS)</span>
+            </div>
             <table>
                 <tr>
                     <th>Vento</th>
