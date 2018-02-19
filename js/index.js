@@ -3,26 +3,18 @@ function inizializzaPagina() {
 		center : {lat: 45.510471, lng: 9.232482},
 		zoom : 12,
 	});
-	var centerMap = function(lat, lng) {
-		lat = parseFloat(lat);
-		lng = parseFloat(lng);
-		var marker = new google.maps.Marker({
-			position: {lat: lat, lng: lng},
-			map: map
-		});
-		map.setCenter({lat: lat, lng: lng});
-	}
-
+	
 	if( 'geolocation' in navigator) {
 		navigator.geolocation.getCurrentPosition (function(pos) {
-			localStorage.setItem('lat', pos.coords.latitude);
-			localStorage.setItem('lon', pos.coords.longitude);
-			
-			centerMap(pos.coords.latitude, pos.coords.longitude);
-		},
-		function(error) {
-			alert(error.message);
-		} );	
+			var marker = new google.maps.Marker({
+				position: {lat: pos.coords.latitude, lng: pos.coords.longitude},
+				map: map
+			});
+			map.setCenter({lat: lat, lng: lng});
+			},
+			function(error) {
+				alert(error.message);
+			} );	
 	} else {
 		console.log('No navigator initiated');
 	}
