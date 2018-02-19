@@ -1,3 +1,23 @@
 body{
+    background-color: #dcedc8;
+}
+
+header{
+    background-color: #aabb97;
+}
+
+h1{
+   font-family: sans-serif;
+}
+
+h3{
+   font-family: sans-serif;
+}
+
+main{
     background-color: #fffffb;
+}
+
+footer{
+    background-color: #aabb97;
 }
