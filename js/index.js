@@ -1,16 +1,11 @@
-function inizializzaPagina() {
-	var map = new google.maps.Map(document.getElementById('mappa'), {
-		center : {lat: 45.510471, lng: 9.232482},
-		zoom : 12,
-	});
+inizializzaPagina();
 
+function inizializzaPagina() {
 	if( 'geolocation' in navigator) {
 		navigator.geolocation.getCurrentPosition (function(pos) {
-			var marker = new google.maps.Marker({
-				position: {lat: pos.coords.latitude, lng: pos.coords.longitude},
-				map: map
-			});
-			map.setCenter({lat: lat, lng: lng});
+			var userInfo = readFromStorage();
+			var weatherObj = generateWeatherObj();
+
 			},
 			function(error) {
 				alert(error.message);
@@ -18,14 +13,17 @@ function inizializzaPagina() {
 	} else {
 		console.log('No navigator initiated');
 	}
+
+	console.log( readFromStorage() );
+	console.log( generateweatherObj() );
 }
 
 function readFromStorage() {
 	var userInfo = {};
 
 	if( localStorage ) {
-		userInfo.date = localStorage.lastAccess || 'Mai';
-		userInfo.lastAccess = lastAccess || 'Mai';
+		userInfo.name = localStorage.name || 'Mario Rossi';
+		userInfo.lastAccess = localStorage.lastAccess || 'Mai';
 
 		localStorage.lastAccess = new Date();
 	}
