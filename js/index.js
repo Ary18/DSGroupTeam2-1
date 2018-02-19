@@ -1,3 +1,5 @@
+initializePage();
+
 function initializePage() {
 	if( 'geolocation' in navigator) {
 		navigator.geolocation.getCurrentPosition (function(pos) {
@@ -19,10 +21,15 @@ function readFromStorage() {
 	var userInfo = {};
 
 	if( localStorage ) {
-		userInfo.name = localStorage.name || 'Mario Rossi';
-		userInfo.lastAccess = localStorage.lastAccess || 'Mai';
+		if( userInfo.name ) {
+			userInfo.name = localStorage.name;
+		} else {
+			userInfo.name = 'Mario Rossi';
+			localStorage.setItem( 'name', userInfo.name );
+		}
 
-		localStorage.lastAccess = new Date();
+		userInfo.lastAccess = localStorage.lastAccess || 'Mai';
+		localStorage.setItem( 'lastAccess' , new Date() );
 	}
 
 	return userInfo;
