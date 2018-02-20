@@ -2,6 +2,8 @@ body{
     /* background-color: #ffffff; */
     /* background-color: #e3f2fd; */
     background-color: #E3EEFA;
+    margin: 0px;
+    padding: 0px;
 }
 
 header{
@@ -9,10 +11,11 @@ header{
     background-color: #246DC0;
     padding: 5px;
     margin-bottom: 20px;
+    box-shadow: 1px 5px 8px gray;
 }
 
 header heading h1{
-   font-family: sans-serif;
+   font-family: 'Trebuchet MS', sans-serif;
    margin-bottom: 2px;
    color: #E3EEFA;
 }
@@ -22,6 +25,13 @@ header heading h3{
    font-style: oblique;
    margin-top: 2px;
    color: #E3EEFA;
+}
+
+#imgMeteo{
+    width: 100px;
+    height: 100px;
+    float: right;
+    margin-top: -100px;
 }
 
 main{
@@ -49,6 +59,7 @@ main{
 #temp {
     float: right;
     margin-top: -28px;
+    margin-right: -22px;
 }
 
 section heading h1{
@@ -57,7 +68,7 @@ section heading h1{
     margin-left: 10px;
 }
 
-map{
+#map{
     width: 80%;
     height: 400px;
 } 
