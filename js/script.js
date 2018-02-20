@@ -1,13 +1,30 @@
-initializePage();
+/*initializePage();*/
 
 function initializePage() {
 	if( 'geolocation' in navigator) {
 		navigator.geolocation.getCurrentPosition (function(pos) {
 				var userInfo = readFromStorage();
-				var weatherObj = generateWeatherObj();
+				var weatherObj = generateWeatherObj(pos);
 
 				console.log(userInfo);
 				console.log(weatherObj);
+
+				document.getElementById('nome-utente').innerText = userInfo.name;
+				document.getElementById('ultimo-accesso').innerText = userInfo.lastAccess;
+				document.getElementById('posizione').innerText = weatherObj.name;
+				document.getElementById('weather-img').setAttribute('src', 'https://openweathermap.org/img/w/' + weatherObj.weather[0].icon + '.png');
+				document.getElementById('temp').innerText = weatherObj.main.temp;
+				document.getElementById('wind-speed').innerText = weatherObj.wind.speed;
+				document.getElementById('wind-deg').innerText = weatherObj.wind.deg;
+				document.getElementById('wind-speed').innerText = weatherObj.wind.speed;
+				document.getElementById('pressure').innerText = weatherObj.pressure;
+				document.getElementById('humidity').innerText = weatherObj.humidity;
+				document.getElementById('cloudiness').innerText = weatherObj.weather[0].description;
+				document.getElementById('sunrise').innerText = weatherObj.sys.sunrise;
+				document.getElementById('sunset').innerText = weatherObj.sys.sunset;
+				document.getElementById('long').innerText = weatherObj.coord.lon;
+				document.getElementById('lat').innerText = weatherObj.coord.lat;
+
 			},
 			function(error) {
 				alert(error.message);
@@ -35,12 +52,12 @@ function readFromStorage() {
 	return userInfo;
 }
 
-function generateWeatherObj() {
+function generateWeatherObj(pos) {
 	var weatherObj = {};
 
 	weatherObj.coord = {};
-	weatherObj.coord.lon = 0;
-	weatherObj.coord.lat = 0;
+	weatherObj.coord.lon = pos.coords.longitude;
+	weatherObj.coord.lat = pos.coords.latitude;
 
 	weatherObj.sys = {};
 	weatherObj.sys.country = 'JP';
