@@ -23,24 +23,29 @@ main{
 }
 
 #weather-summary{
-    float: right;
+    /* float: right; */
     overflow: auto;
 
 }
 
 #weather-img{
-    float: left;
-    width: 200px;
+    float: right;
+    width: 150px;
     height: 150px;
     border: 2px;
+    margin-top: -75px;
+
 }
 
 #temp {
     float: right;
+    margin-top: -28px;
 }
 
 section heading h1{
     font-family: monospace;
+    padding-top: 20px;
+    margin-left: 10px;
 }
 
 mappa{
@@ -53,12 +58,21 @@ table {
     background-color: #fffffb;
     width: 70%;
     height: 200px;
-    margin: auto;
-    display: block;
+    /* margin: auto;
+    display: block; */
 
 }
 
 footer{
     background-color: #aabb97;
-    padding: 5px;
+    padding: 40px;
+}
+
+footer a{
+    padding-right: 20%;
+}
+
+footer span{
+    display: block;
+    text-align: center;
 }
