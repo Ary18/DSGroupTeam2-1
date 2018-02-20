@@ -1,97 +1,57 @@
-/*initializePage();*/
-
 function initializePage() {
-	if( 'geolocation' in navigator) {
-		navigator.geolocation.getCurrentPosition (function(pos) {
-				var userInfo = readFromStorage();
-				var weatherObj = generateWeatherObj(pos);
+    if (localStorage && localStorage.getItem('name')) {
+        var userInfo = {};
+        userInfo.name = localStorage.getItem('name');
+        userInfo.lastAccess = localStorage.getItem('lastAccess');
+        localStorage.setItem('lastAccess', new Date().toLocaleString());
+    } else {
+        var userInfo = {};
+        userInfo.name = 'Mario Rossi';
+        localStorage.setItem('name', userInfo.name);
+        userInfo.lastAccess = localStorage.lastAccess || 'Mai';
+        localStorage.setItem('lastAccess' , new Date().toLocaleString());
+    }
 
-				console.log(userInfo);
-				console.log(weatherObj);
-
-				document.getElementById('nome-utente').innerText = userInfo.name;
-				document.getElementById('ultimo-accesso').innerText = userInfo.lastAccess;
-				document.getElementById('posizione').innerText = weatherObj.name;
-				document.getElementById('weather-img').setAttribute('src', 'https://openweathermap.org/img/w/' + weatherObj.weather[0].icon + '.png');
-				document.getElementById('temp').innerText = weatherObj.main.temp;
-				document.getElementById('wind-speed').innerText = weatherObj.wind.speed;
-				document.getElementById('wind-deg').innerText = weatherObj.wind.deg;
-				document.getElementById('wind-speed').innerText = weatherObj.wind.speed;
-				document.getElementById('pressure').innerText = weatherObj.pressure;
-				document.getElementById('humidity').innerText = weatherObj.humidity;
-				document.getElementById('cloudiness').innerText = weatherObj.weather[0].description;
-				document.getElementById('sunrise').innerText = weatherObj.sys.sunrise;
-				document.getElementById('sunset').innerText = weatherObj.sys.sunset;
-				document.getElementById('long').innerText = weatherObj.coord.lon;
-				document.getElementById('lat').innerText = weatherObj.coord.lat;
-
-			},
-			function(error) {
-				alert(error.message);
-			} );	
-	} else {
-		console.log('No navigator initiated');
-	}
+    document.getElementById('nome-utente').innerText = userInfo.name;
+    document.getElementById('ultimo-accesso').innerText = userInfo.lastAccess;
 }
 
-function readFromStorage() {
-	var userInfo = {};
-
-	if( localStorage ) {
-		if( userInfo.name ) {
-			userInfo.name = localStorage.name;
-		} else {
-			userInfo.name = 'Mario Rossi';
-			localStorage.setItem( 'name', userInfo.name );
-		}
-
-		userInfo.lastAccess = localStorage.lastAccess || 'Mai';
-		localStorage.setItem( 'lastAccess' , new Date() );
-	}
-
-	return userInfo;
+function miaFunzioneCallback() {
+    if ('geolocation' in navigator) {
+        navigator.geolocation.getCurrentPosition(funzioneOk, funzioneErrore);
+    } else {
+        alert('La geolocalizzazione non è disponibile');
+    }
 }
 
-function generateWeatherObj(pos) {
-	var weatherObj = {};
+function funzioneOk(position) {
+    if (position && position.coords) {
+        var weatherObj = generateWeatherObj(position);
 
-	weatherObj.coord = {};
-	weatherObj.coord.lon = pos.coords.longitude;
-	weatherObj.coord.lat = pos.coords.latitude;
+        var mapProp = {
+            center:new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
+            zoom:16
+        };
+        
+        var map = new google.maps.Map(document.getElementById('map'), mapProp);
+        var marker = new google.maps.Marker({position: mapProp.center, map: map});
 
-	weatherObj.sys = {};
-	weatherObj.sys.country = 'JP';
-	weatherObj.sys.sunrise = 1369769524;
-	weatherObj.sys.sunset = 1369769524;
+        document.getElementById('posizione').innerText = weatherObj.name;
+        document.getElementById('weather-img').setAttribute('src', 'https://openweathermap.org/img/w/' + weatherObj.weather[0].icon + '.png');
+        document.getElementById('temp').innerText = weatherObj.main.temp;
+        document.getElementById('wind-speed').innerText = weatherObj.wind.speed;
+        document.getElementById('wind-deg').innerText = weatherObj.wind.deg;
+        document.getElementById('wind-speed').innerText = weatherObj.wind.speed;
+        document.getElementById('pressure').innerText = weatherObj.pressure;
+        document.getElementById('humidity').innerText = weatherObj.humidity;
+        document.getElementById('cloudiness').innerText = weatherObj.weather[0].description;
+        document.getElementById('sunrise').innerText = weatherObj.sys.sunrise;
+        document.getElementById('sunset').innerText = weatherObj.sys.sunset;
+        document.getElementById('long').innerText = weatherObj.coord.longitude;
+        document.getElementById('lat').innerText = weatherObj.coord.latitude;
+    }
+}
 
-	weatherObj.weather = [];
-	weatherObj.weather[0] = {};
-	weatherObj.weather[0].id = 804;
-	weatherObj.weather[0].main = 'Clouds';
-	weatherObj.weather[0].description = 'Overcast clouds';
-	weatherObj.weather[0].icon = '04n';
-
-	weatherObj.main = {};
-	weatherObj.main.temp = 289.5;
-	weatherObj.main.temp = 89;
-	weatherObj.main.temp = 1013;
-	weatherObj.main.temp = 287.04;
-	weatherObj.main.temp = 292.04;
-
-	weatherObj.wind = {};
-	weatherObj.wind.speed = 7.31;
-	weatherObj.wind.deg = 187.002;
-
-	weatherObj.rain = {};
-	weatherObj.rain['3h'] = 0;
-
-	weatherObj.clouds = {};
-	weatherObj.clouds.all = 92;
-
-	weatherObj.dt = 1369824698;
-	weatherObj.id = 1851632;
-	weatherObj.name = 'Shuzenji';
-	weatherObj.cod = 200;
-
-	return weatherObj;
+function funzioneErrore(error) {
+    alert(error.message);
 }
