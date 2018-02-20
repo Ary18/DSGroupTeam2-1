@@ -1,4 +1,4 @@
-initializePage();
+/*initializePage();*/
 
 function initializePage() {
 	if( 'geolocation' in navigator) {
@@ -8,6 +8,30 @@ function initializePage() {
 
 				console.log(userInfo);
 				console.log(weatherObj);
+
+				var name = userInfo.name;
+				var lastAccess = userInfo.lastAccess;
+				var long = weatherObj.coord.lon;
+				var lat = weatherObj.coord.lat;
+				var country = weatherObj.sys.country;
+				var sunrise = weatherObj.sys.sunrise;
+				var sunset = weatherObj.sys.sunset;
+				var weatherMain = weatherObj.weather[0].main;
+				var weatherDescription = weatherObj.weather[0].description;
+				var weatherIcon = weatherObj.weather[0].icon;
+				var weatherTemp = weatherObj.main.temp;
+
+
+
+
+
+
+				document.getElementById('nome-utente').innerText = name;
+				document.getElementById('ultimo-accesso').innerText = lastAccess;
+
+
+
+
 			},
 			function(error) {
 				alert(error.message);
