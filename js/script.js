@@ -1,5 +1,6 @@
+moment.locale('it');
+
 function initializePage() {
-    moment.locale('it');
     var date = moment();
     var userInfo = {};
 
@@ -47,8 +48,8 @@ function funzioneOk(position) {
         document.getElementById('pressure').innerText = weatherObj.pressure;
         document.getElementById('humidity').innerText = weatherObj.humidity;
         document.getElementById('cloudiness').innerText = weatherObj.weather[0].description;
-        document.getElementById('sunrise').innerText = weatherObj.sys.sunrise;
-        document.getElementById('sunset').innerText = weatherObj.sys.sunset;
+        document.getElementById('sunrise').innerText = moment.unix(weatherObj.sys.sunrise).format('hh:mm:ss');
+        document.getElementById('sunset').innerText = moment.unix(weatherObj.sys.sunset).format('hh:mm:ss');
         document.getElementById('long').innerText = Math.round(weatherObj.coord.longitude * 100) / 100;
         document.getElementById('lat').innerText = Math.round(weatherObj.coord.latitude * 100) / 100;
     }
