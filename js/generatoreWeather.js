@@ -1,42 +1,45 @@
 function generateWeatherObj(pos) {
-	var weatherObj = {};
-	weatherObj.coord = {};
-	weatherObj.coord.longitude = pos.coords.longitude;
-	weatherObj.coord.latitude = pos.coords.latitude;
-
-	weatherObj.sys = {};
-	weatherObj.sys.country = 'JP';
-	weatherObj.sys.sunrise = 1369769524;
-	weatherObj.sys.sunset = 1369769524;
-
-	weatherObj.weather = [];
-	weatherObj.weather[0] = {};
-	weatherObj.weather[0].id = 804;
-	weatherObj.weather[0].main = 'Clouds';
-	weatherObj.weather[0].description = 'Overcast clouds';
-	weatherObj.weather[0].icon = '04n';
-
-	weatherObj.main = {};
-	weatherObj.main.temp = 289.5;
-	weatherObj.main.temp = 89;
-	weatherObj.main.temp = 1013;
-	weatherObj.main.temp = 287.04;
-	weatherObj.main.temp = 292.04;
-
-	weatherObj.wind = {};
-	weatherObj.wind.speed = 7.31;
-	weatherObj.wind.deg = 187.002;
-
-	weatherObj.rain = {};
-	weatherObj.rain['3h'] = 0;
-
-	weatherObj.clouds = {};
-	weatherObj.clouds.all = 92;
-
-	weatherObj.dt = 1369824698;
-	weatherObj.id = 1851632;
-	weatherObj.name = 'Milano';
-	weatherObj.cod = 200;
+	var weatherObj = {
+		coord: {
+			longitude: pos.coords.longitude,
+			latitude: pos.coords.latitude
+		},
+		sys: {
+			country: 'JP',
+			sunrise: 1369769524,
+			sunset: 1369769524
+		},
+		weather: [{
+				id: 804,
+				main: 'Clouds',
+				description: 'Overcast clouds',
+				icon: '04n'
+			}
+		],
+		main: {
+			temp: 285.514,
+			pressure: 1013.75,
+			humidity: 100,
+			temp_min: 285.514, 
+			temp_max: 285.514,
+			sea_level: 1023.22,
+			grnd_level: 1013.75
+		},
+		wind: {
+			speed: 7.31,
+			deg: 187.002
+		},
+		rain: {
+			'3h': 0
+		},
+		clouds: {
+			all: 92
+		},
+		dt: 1369824698,
+		id: 1369824698,
+		name: 'Milano',
+		cod: 200
+	};
 
 	return weatherObj;
 }

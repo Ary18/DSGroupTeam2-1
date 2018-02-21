@@ -38,6 +38,14 @@ function funzioneOk(position) {
         
         var map = new google.maps.Map(document.getElementById('map'), mapProp);
         var marker = new google.maps.Marker({position: mapProp.center, map: map});
+        var geocoder = new google.maps.Geocoder;
+
+        geocoder.geocode({'location': {lat: position.coords.latitude, lng: position.coords.longitude}}, function(results, status) {
+            if( results && results[0] ) {
+                console.log(results[0].formatted_address);
+            }
+        });
+
 
         document.getElementById('posizione').innerText = weatherObj.name;
         document.getElementById('weather-img').setAttribute('src', 'https://openweathermap.org/img/w/' + weatherObj.weather[0].icon + '.png');
@@ -45,8 +53,8 @@ function funzioneOk(position) {
         document.getElementById('wind-speed').innerText = weatherObj.wind.speed;
         document.getElementById('wind-deg').innerText = weatherObj.wind.deg;
         document.getElementById('wind-speed').innerText = weatherObj.wind.speed;
-        document.getElementById('pressure').innerText = weatherObj.pressure;
-        document.getElementById('humidity').innerText = weatherObj.humidity;
+        document.getElementById('pressure').innerText = weatherObj.main.pressure;
+        document.getElementById('humidity').innerText = weatherObj.main.humidity;
         document.getElementById('cloudiness').innerText = weatherObj.weather[0].description;
         document.getElementById('sunrise').innerText = moment.unix(weatherObj.sys.sunrise).format('hh:mm:ss');
         document.getElementById('sunset').innerText = moment.unix(weatherObj.sys.sunset).format('hh:mm:ss');
