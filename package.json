@@ -23,5 +23,8 @@
   "homepage": "https://github.com/sorrentmutie/DSGroupTeam2#readme",
   "dependencies": {
     "moment": "2.20.1"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1"
   }
 }
