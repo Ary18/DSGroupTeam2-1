@@ -8,13 +8,12 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body onload="initializePage()">
-    <header>
+    <header class="margin-bottom-20">
         <heading>
             <h1>Benvenuto <span id="nome-utente">NOME UTENTE (JS)</span></h1>
-            <h3>Ultimo accesso: <span id="ultimo-accesso"> ULTIMO ACCESSO (JS)</span><h3>
-            <div>
-                <img src="http://www.circolovelamestre.it/wordpress/wp-content/uploads/2014/03/meteo_script.gif" id="imgMeteo">
-            </div>
+            <img src="http://www.circolovelamestre.it/wordpress/wp-content/uploads/2014/03/meteo_script.gif">
+           
+            <h3>Ultimo accesso: <span id="ultimo-accesso"> ULTIMO ACCESSO (JS)</span><h3></h3>
         </heading>
     </header>
     <main>
@@ -58,6 +57,10 @@
                     <th>Coordinate</th>
                     <td>Longitudine: <span id="long">JS</span>, latitudine <span id="lat">JS</span></td>
                 </tr>   
+                <tr>
+                    <th>Ti trovi:</th>
+                    <td><span id="address"></span></td>
+                </tr>
                 <tr>
                     <td id="map" colspan="2"></td>
                 </tr>       

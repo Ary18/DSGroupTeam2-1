@@ -6,8 +6,8 @@ function generateWeatherObj(pos) {
 		},
 		sys: {
 			country: 'JP',
-			sunrise: 1369769524,
-			sunset: 1369769524
+			sunrise: 1485763863,
+			sunset: 1485726240
 		},
 		weather: [{
 				id: 804,

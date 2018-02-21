@@ -42,7 +42,7 @@ function funzioneOk(position) {
 
         geocoder.geocode({'location': {lat: position.coords.latitude, lng: position.coords.longitude}}, function(results, status) {
             if( results && results[0] ) {
-                console.log(results[0].formatted_address);
+                document.getElementById('address').innerText = results[0].formatted_address;
             }
         });
 
@@ -56,8 +56,8 @@ function funzioneOk(position) {
         document.getElementById('pressure').innerText = weatherObj.main.pressure;
         document.getElementById('humidity').innerText = weatherObj.main.humidity;
         document.getElementById('cloudiness').innerText = weatherObj.weather[0].description;
-        document.getElementById('sunrise').innerText = moment.unix(weatherObj.sys.sunrise).format('hh:mm:ss');
-        document.getElementById('sunset').innerText = moment.unix(weatherObj.sys.sunset).format('hh:mm:ss');
+        document.getElementById('sunrise').innerText = moment.unix(weatherObj.sys.sunrise).format('HH:MM');
+        document.getElementById('sunset').innerText = moment.unix(weatherObj.sys.sunset).format('HH:MM');
         document.getElementById('long').innerText = Math.round(weatherObj.coord.longitude * 100) / 100;
         document.getElementById('lat').innerText = Math.round(weatherObj.coord.latitude * 100) / 100;
     }
