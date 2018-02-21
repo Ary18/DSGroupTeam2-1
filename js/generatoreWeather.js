@@ -1,4 +1,5 @@
 function generateWeatherObj(pos) {
+	'use strict';
 	var weatherObj = {
 		coord: {
 			longitude: pos.coords.longitude,
