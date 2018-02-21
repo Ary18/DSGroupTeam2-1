@@ -49,8 +49,8 @@ function funzioneOk(position) {
         document.getElementById('cloudiness').innerText = weatherObj.weather[0].description;
         document.getElementById('sunrise').innerText = weatherObj.sys.sunrise;
         document.getElementById('sunset').innerText = weatherObj.sys.sunset;
-        document.getElementById('long').innerText = weatherObj.coord.longitude;
-        document.getElementById('lat').innerText = weatherObj.coord.latitude;
+        document.getElementById('long').innerText = Math.round(weatherObj.coord.longitude * 100) / 100;
+        document.getElementById('lat').innerText = Math.round(weatherObj.coord.latitude * 100) / 100;
     }
 }
 
