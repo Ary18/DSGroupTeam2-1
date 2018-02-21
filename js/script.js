@@ -1,9 +1,16 @@
+/* global google */
+/* global moment */
+/* global oggetto */
+
+window.addEventListener('load', initializePage);
+
 moment.locale('it');
 
 function initializePage() {
     'use strict';
     var date = moment();
     var userInfo = {};
+
 
     if (localStorage && localStorage.getItem('name')) {
         userInfo.name = localStorage.getItem('name');
@@ -18,6 +25,7 @@ function initializePage() {
 
     document.getElementById('nome-utente').innerText = userInfo.name;
     document.getElementById('ultimo-accesso').innerText = userInfo.lastAccess;
+    miaFunzioneCallback();
 }
 
 function miaFunzioneCallback() {
@@ -32,7 +40,7 @@ function miaFunzioneCallback() {
 function funzioneOk(position) {
     'use strict';
     if (position && position.coords) {
-        var weatherObj = generateWeatherObj(position);
+        var weatherObj = oggetto.generaOggetto(position);
 
         var mapProp = {
             center:new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
@@ -41,7 +49,7 @@ function funzioneOk(position) {
         
         var map = new google.maps.Map(document.getElementById('map'), mapProp);
         new google.maps.Marker({position: mapProp.center, map: map});
-        new google.maps.Geocoder().geocode({'location': {lat: position.coords.latitude, lng: position.coords.longitude}}, function(results) { 'use strict';
+        new google.maps.Geocoder().geocode({'location': {lat: position.coords.latitude, lng: position.coords.longitude}}, function(results) {
             if( results && results[0] ) {
                 document.getElementById('address').innerText = results[0].formatted_address;
             }

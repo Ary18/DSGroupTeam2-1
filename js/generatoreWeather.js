@@ -1,3 +1,7 @@
+
+
+
+/* exported  generateWeatherObj */
 function generateWeatherObj(pos) {
 	'use strict';
 	var weatherObj = {
@@ -44,3 +48,8 @@ function generateWeatherObj(pos) {
 
 	return weatherObj;
 }
+
+/* exported oggetto */
+var oggetto= {
+	generaOggetto: generateWeatherObj
+};
