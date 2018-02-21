@@ -1,6 +1,7 @@
 moment.locale('it');
 
 function initializePage() {
+    'use strict';
     var date = moment();
     var userInfo = {};
 
@@ -20,6 +21,7 @@ function initializePage() {
 }
 
 function miaFunzioneCallback() {
+    'use strict';
     if ('geolocation' in navigator) {
         navigator.geolocation.getCurrentPosition(funzioneOk, funzioneErrore);
     } else {
@@ -28,6 +30,7 @@ function miaFunzioneCallback() {
 }
 
 function funzioneOk(position) {
+    'use strict';
     if (position && position.coords) {
         var weatherObj = generateWeatherObj(position);
 
@@ -37,10 +40,8 @@ function funzioneOk(position) {
         };
         
         var map = new google.maps.Map(document.getElementById('map'), mapProp);
-        var marker = new google.maps.Marker({position: mapProp.center, map: map});
-        var geocoder = new google.maps.Geocoder;
-
-        geocoder.geocode({'location': {lat: position.coords.latitude, lng: position.coords.longitude}}, function(results, status) {
+        new google.maps.Marker({position: mapProp.center, map: map});
+        new google.maps.Geocoder().geocode({'location': {lat: position.coords.latitude, lng: position.coords.longitude}}, function(results) { 'use strict';
             if( results && results[0] ) {
                 document.getElementById('address').innerText = results[0].formatted_address;
             }
@@ -64,5 +65,6 @@ function funzioneOk(position) {
 }
 
 function funzioneErrore(error) {
+    'use strict';
     alert(error.message);
 }
