@@ -1,16 +1,16 @@
 /* global google */
 /* global moment */
 /* global oggetto */
+/* globals $ */
 
 window.addEventListener('load', initializePage);
-
+$('body').loading();
 moment.locale('it');
 
 function initializePage() {
     'use strict';
     var date = moment();
     var userInfo = {};
-
 
     if (localStorage && localStorage.getItem('name')) {
         userInfo.name = localStorage.getItem('name');
@@ -33,15 +33,15 @@ function miaFunzioneCallback() {
     if ('geolocation' in navigator) {
         navigator.geolocation.getCurrentPosition(funzioneOk, funzioneErrore);
     } else {
+        $('body').loading('stop');
         alert('La geolocalizzazione non è disponibile');
     }
 }
 
 function funzioneOk(position) {
     'use strict';
-    if (position && position.coords) {
-        var weatherObj = oggetto.generaOggetto(position);
 
+    if (position && position.coords) {
         var mapProp = {
             center:new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
             zoom:16
@@ -55,24 +55,27 @@ function funzioneOk(position) {
             }
         });
 
+        oggetto.generaOggetto(position, function(weatherObj) {
+            document.getElementById('posizione').innerText = weatherObj.name;
+            document.getElementById('weather-img').setAttribute('src', 'https://openweathermap.org/img/w/' + weatherObj.weather[0].icon + '.png');
+            document.getElementById('temp').innerText = weatherObj.main.temp+' °';
+            document.getElementById('wind-deg').innerText = ( weatherObj.wind.deg || '0' )+' °';
+            document.getElementById('wind-speed').innerText = weatherObj.wind.speed+' m/s';
+            document.getElementById('pressure').innerText = weatherObj.main.pressure+' hpa';
+            document.getElementById('humidity').innerText = weatherObj.main.humidity+' %';
+            document.getElementById('cloudiness').innerText = weatherObj.weather[0].description;
+            document.getElementById('sunrise').innerText = moment.unix(weatherObj.sys.sunrise).format('HH:MM');
+            document.getElementById('sunset').innerText = moment.unix(weatherObj.sys.sunset).format('HH:MM');
+            document.getElementById('long').innerText = Math.round(weatherObj.coord.lon * 100) / 100;
+            document.getElementById('lat').innerText = Math.round(weatherObj.coord.lat * 100) / 100;
 
-        document.getElementById('posizione').innerText = weatherObj.name;
-        document.getElementById('weather-img').setAttribute('src', 'https://openweathermap.org/img/w/' + weatherObj.weather[0].icon + '.png');
-        document.getElementById('temp').innerText = weatherObj.main.temp;
-        document.getElementById('wind-speed').innerText = weatherObj.wind.speed;
-        document.getElementById('wind-deg').innerText = weatherObj.wind.deg;
-        document.getElementById('wind-speed').innerText = weatherObj.wind.speed;
-        document.getElementById('pressure').innerText = weatherObj.main.pressure;
-        document.getElementById('humidity').innerText = weatherObj.main.humidity;
-        document.getElementById('cloudiness').innerText = weatherObj.weather[0].description;
-        document.getElementById('sunrise').innerText = moment.unix(weatherObj.sys.sunrise).format('HH:MM');
-        document.getElementById('sunset').innerText = moment.unix(weatherObj.sys.sunset).format('HH:MM');
-        document.getElementById('long').innerText = Math.round(weatherObj.coord.longitude * 100) / 100;
-        document.getElementById('lat').innerText = Math.round(weatherObj.coord.latitude * 100) / 100;
+            $('body').loading('stop');
+        });
     }
 }
 
-function funzioneErrore(error) {
+function funzioneErrore() {
     'use strict';
-    alert(error.message);
+    $('body').loading('stop');
+    alert("L'utente ha negato la geolocalizzazione");
 }
