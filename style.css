@@ -16,15 +16,27 @@ body{
     padding: 20px;
     box-shadow: 0px 6px 8px grey;
  }
+ heading{
+    width: 100%;
+    content: "";
+    display: table;
+    clear: both;
+ }
  
 header heading h1 img {
     display: inline-block;
     vertical-align: middle;
     margin: 0px;
- }
+}
  
 header heading img {
     width: 100px; 
+    float: right;
+}
+#div1{
+    float: left;
+}
+#div2{
     float: right;
 }
 
