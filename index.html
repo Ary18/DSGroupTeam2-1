@@ -1,85 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Previsioni</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="node_modules/jquery-easy-loading/dist/jquery.loading.css" />
 </head>
+
 <body>
-    <header class="margin-bottom-20">
-        <heading>
-        <div id="div1">
-            <h1>Benvenuto <span id="nome-utente">NOME UTENTE (JS)</span></h1>
-            <h3>Ultimo accesso: <span id="ultimo-accesso"> ULTIMO ACCESSO (JS)</span><h3></h3>
-        </div>
-        <div id="div2">
-            <img src="http://www.circolovelamestre.it/wordpress/wp-content/uploads/2014/03/meteo_script.gif">
-        </div>
-        </heading>
-    </header>
-    <main>
-        <section>
-            <div id="weather-summary">
-                <heading>
-                    <h1>Previsioni metereologiche per <span id="posizione">POSIZIONE (JS)</span></h1>
-                </heading>
-                <figure id="container-img">
-                    <img id="weather-img" src="http://openweathermap.org/img/w/01d.png">
-                </figure>
-                
-                <span id="temp">TEMPERATURA (JS)</span>
+    <div class="container-fluid">
+        <header>
+            <nav class="navbar navbar-toggleable-md navbar-inverse bg-primary">
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <a class="navbar-brand" href="#">Navbar</a>
+                <div class="collapse navbar-collapse" id="navbarColor02">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Home
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#modal-chi-siamo">Chi siamo</a>
+                        </li>
+                    </ul>
+                    <form class="form-inline">
+                        <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                        <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+                </div>
+            </nav>
+            <div class="jumbotron">
+                <h1 class="display-3">Benvenuto
+                    <span id="nome-utente"></span>
+                </h1>
+                <p class="lead">Ultimo accesso:
+                    <span id="ultimo-accesso"></span>
+                </p>
+                <hr class="my-4">
+                <p class="lead">Previsioni metereologiche per
+                    <span id="posizione"></span>
+                </p>
             </div>
-            <table>
-                <tr>
-                    <th>Vento</th>
-                    <td>Velocità: <span id="wind-speed">JS</span>, direzione <span id="wind-deg">JS</span></td>
-                </tr>
-                <tr>
-                    <th>Nuvolosità</th>
-                    <td id="cloudiness">JS</td>
-                </tr>
-                <tr>
-                    <th>Pressione</th>
-                    <td id="pressure">JS</td>
-                </tr>
-                <tr>
-                    <th>Umidità</th>
-                    <td id="humidity">JS</td>
-                </tr>
-                <tr>
-                    <th>Alba</th>
-                    <td id="sunrise">JS</td>
-                </tr>      
-                <tr>
-                    <th>Tramonto</th>
-                    <td id="sunset">JS</td>
-                </tr>
-                <tr>
-                    <th>Coordinate</th>
-                    <td>Longitudine: <span id="long">JS</span>, latitudine <span id="lat">JS</span></td>
-                </tr>   
-                <tr>
-                    <th>Ti trovi a:</th>
-                    <td><span id="address"></span></td>
-                </tr>
-                <tr>
-                    <td id="map" colspan="2"></td>
-                </tr>       
-            </table>
-        </section>
-    </main>
-    <footer>
-        <span>Puoi seguirci e vedere le nostre previsioni anche su:</span><br><br> 
-        <a href="https://www.facebook.com/">FACEBOOK</a>
-        <a href="https://twitter.com/?lang=en">TWITTER</a>
-        <a href="https://www.instagram.com/?hl=en">INSTAGRAM</a>
-        <a href="https://plus.google.com/discover">GOOGLE +</a>
-    </footer>
+        </header>
+        <main>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md 6">
+                        <div class="card" style="width: 100%;">
+                            <img id="weather-img" class="card-img-top" src="" alt="weather">
+                            <div class="card-block">
+                                <h4 class="card-title"><span id="cloudiness"></span></h4>
+                                <div id="map"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer>
+        </footer>
+
+    </div>
 
     <script src="node_modules/jquery/dist/jquery.js"></script>
+    <script src="node_modules/tether/dist/js/tether.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
     <script src="node_modules/jquery-easy-loading/dist/jquery.loading.js"></script>
     <script src="node_modules/moment/min/moment.min.js"></script>
     <script src="node_modules/moment/locale/it.js"></script>
@@ -87,4 +80,5 @@
     <script src="js/generatoreWeather.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1EHAsI359U-bXcnQc_2QdDCZ7eG4T8ZA"></script>
 </body>
+
 </html>
