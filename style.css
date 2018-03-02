@@ -31,3 +31,7 @@ header .jumbotron {
 #map {
     height: 300px;
 }
+
+#weather-img {
+    width: 100px;
+}
